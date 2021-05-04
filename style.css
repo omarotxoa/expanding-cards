@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Muli', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* give height so we can center using justify-content */
+    overflow: hidden; /* no scrollbars */
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    width: 90vw;
+}
+
+.panel {
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 80vh;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    flex: 0.5;
+    margin: 10px;
+    position: relative; /* so that we can control (absolutely position) the text within */
+    transition: flex 0.7s ease-in;
+}
+
+.panel h3 {
+    font-size: 24px;
+    position: absolute; /* requires panel to be relatively positioned */
+    bottom: 20px;
+    left: 20px;
+    margin: 0;
+    opacity: 0; /* text hidden when panel is not active */
+}
+
+.panel.active {
+    flex: 5; /* panel grows when clicked on and active class is applied */
+}
+
+.panel.active h3 {
+    opacity: 1; /* text visible when its panel is active */
+    transition: opacity 0.3s ease-in 0.4s; /* delayed transition so text doesn't appear until panel fully open */
+}
+
+.panel:nth-of-type(4), .panel:nth-of-type(5) {
+    display: none; /* we don't want too many panels in small/mobile viewports */  
+}
+
+@media (min-width: 480px) {
+    .panel:nth-of-type(4), .panel:nth-of-type(5) {
+        display: block; /* show the previously hidden panels on larger viewports */
+    }
+}
